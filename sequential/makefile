@@ -1,5 +1,6 @@
 CC=g++
 CFLAGS=-c -Wall
+LIBS=-lrt
 SRC_DIR = src
 
 vpath %.cpp $(SRC_DIR)
@@ -15,22 +16,22 @@ BINS = undirected_triangle_count \
 all: $(BINS)
 
 undirected_triangle_count: tc_main.o graph.o tc.o graph_io.o graph_util.o
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIBS) -o $@
 	
 breadth_first_search: bfs_main.o graph.o bfs.o graph_io.o graph_util.o
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIBS) -o $@
 	
 single_source_shortest_path: sssp_main.o graph.o sssp.o graph_io.o graph_util.o
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIBS) -o $@
 	
 pagerank: pr_main.o graph.o pr.o graph_io.o graph_util.o
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIBS) -o $@
 
 connected_components: cc_main.o graph.o cc.o graph_io.o
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIBS) -o $@
 	
 betweenness_centrality: bc_main.o graph.o bc.o graph_io.o
-	$(CC) $^ -o $@
+	$(CC) $^ $(LIBS) -o $@
 
 bfs_main.o: bfs_main.cpp bfs.o graph_util.o graph_io.o graph.o
 	$(CC) $(CFLAGS) $<
